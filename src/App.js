@@ -14,6 +14,7 @@ function App() {
     } else {
       setShowScan(false);
       setScanBtn("Scan Code");
+      setData("Scanned Result");
     }
   }
   const copyText = () => {
@@ -38,7 +39,7 @@ function App() {
               <div className="qrCode ">
                 <QRCode className="qr"
                   size={200}
-                  value="My Self Nitish Kumar"
+                  value=" Nitish Kumar"
                 />
               </div>
             </div>
@@ -47,7 +48,7 @@ function App() {
         </div>
       </section>
       {showScan && (
-        <section section className='scanner'>
+        <section className='scanner'>
           <div className="flex items-center border-b border-teal-500 py-2 mb-15">
             <div className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" aria-label="">{data}</div>
             <a target="_blank" rel="noreferrer" href={data} className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
@@ -57,10 +58,6 @@ function App() {
               Copy
             </button>
           </div>
-          <span className='bord bord1'></span>
-          <span className='bord bord2'></span>
-          <span className='bord bord3'></span>
-          <span className='bord bord4'></span>
           <QrReader
             constraints={{facingMode:"environment"}}         
             delay={300}

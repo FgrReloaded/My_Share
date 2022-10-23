@@ -33,9 +33,9 @@
 .scanner{
   width: 75%;
   margin: auto;
-  position: relative;
+  /* position: relative; */
 }
-.bord{
+/* .bord{
   position: absolute;
 }
 .bord1{
@@ -69,7 +69,7 @@
   height: 50px;
   border-right: 5px inset #2196f3;
   border-bottom: 5px outset #2196f3;
-}
+} */
 @media (max-width: 768px) {
   .container, .qrCode{
     min-height: 50vh;
