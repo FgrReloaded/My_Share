@@ -62,6 +62,7 @@ function App() {
           <span className='bord'></span>
           <span className='bord'></span>
           <QrReader
+            constraints={{facingMode:"environment"}}         
             delay={300}
             onResult={(result, error) => {
               if (!!result) {
