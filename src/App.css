@@ -38,33 +38,33 @@
 .bord{
   position: absolute;
 }
-.bord:nth-child(1){
+.bord1{
   left: -1.5%;
-  top: 11%;
+  top: 24.5%;
   width: 50px;
   height: 50px;
   border-left: 5px  outset #2196f3;
   border-top: 5px inset #2196f3;
 }
-.bord:nth-child(2){
+.bord2{
   right: -1.5%;
-  top: 11%;
+  top: 24.5%;
   width: 50px;
   height: 50px;
   border-right: 5px inset #2196f3;
   border-top: 5px inset #2196f3;
 }
-.bord:nth-child(3){
+.bord3{
   left: -1.5%;
-  bottom: 11%;
+  bottom: 9.5%;
   width: 50px;
   height: 50px;
   border-left: 5px inset #2196f3;
   border-bottom: 5px inset #2196f3;
 }
-.bord:nth-child(4){
+.bord4{
   right: -1.5%;
-  bottom: 11%;
+  bottom: 9.5%;
   width: 50px;
   height: 50px;
   border-right: 5px inset #2196f3;

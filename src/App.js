@@ -57,10 +57,10 @@ function App() {
               Copy
             </button>
           </div>
-          <span className='bord'></span>
-          <span className='bord'></span>
-          <span className='bord'></span>
-          <span className='bord'></span>
+          <span className='bord bord1'></span>
+          <span className='bord bord2'></span>
+          <span className='bord bord3'></span>
+          <span className='bord bord4'></span>
           <QrReader
             constraints={{facingMode:"environment"}}         
             delay={300}
