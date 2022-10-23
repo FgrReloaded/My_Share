@@ -30,6 +30,46 @@
 .read{
   font-family: "sub";
 }
+.scanner{
+  width: 75%;
+  margin: auto;
+  position: relative;
+}
+.bord{
+  position: absolute;
+}
+.bord:nth-child(1){
+  left: -1.5%;
+  top: 11%;
+  width: 50px;
+  height: 50px;
+  border-left: 5px  outset #2196f3;
+  border-top: 5px inset #2196f3;
+}
+.bord:nth-child(2){
+  right: -1.5%;
+  top: 11%;
+  width: 50px;
+  height: 50px;
+  border-right: 5px inset #2196f3;
+  border-top: 5px inset #2196f3;
+}
+.bord:nth-child(3){
+  left: -1.5%;
+  bottom: 11%;
+  width: 50px;
+  height: 50px;
+  border-left: 5px inset #2196f3;
+  border-bottom: 5px inset #2196f3;
+}
+.bord:nth-child(4){
+  right: -1.5%;
+  bottom: 11%;
+  width: 50px;
+  height: 50px;
+  border-right: 5px inset #2196f3;
+  border-bottom: 5px outset #2196f3;
+}
 @media (max-width: 768px) {
   .container, .qrCode{
     min-height: 50vh;
