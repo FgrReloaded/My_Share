@@ -13,7 +13,7 @@ function Home() {
   const room = randomatic('*', 15);
   const [data, setData] = useState("Scanned Result");
   const [scanBtn, setScanBtn] = useState("Scan Code");
-  const [showScan, setShowScan] = useState(true);
+  const [showScan, setShowScan] = useState(false);
   const [result, setResult] = useState("None");
   const showScanner = () => {
     if (!showScan) {
@@ -89,8 +89,8 @@ function Home() {
             delay={300}
             onResult={(result, error) => {
               if (!!result) {
-                sendData();
                 setData(result?.text);
+                sendData();
               }
               if (!!error) {
                 console.info(error);
