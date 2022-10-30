@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import QRCode from "react-qr-code";
+import React from 'react';
 import "./App.css"
-import { QrReader } from 'react-qr-reader';
-import randomatic from 'randomatic';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Service from './Service';
 import Home from './Home';
 

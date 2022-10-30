@@ -12,6 +12,7 @@
   justify-content: center;
   margin: auto;
   min-height: 75vh;
+  overflow: hidden;
 }
 .qrCode{
   display: flex;
@@ -35,41 +36,7 @@
   margin: auto;
   /* position: relative; */
 }
-/* .bord{
-  position: absolute;
-}
-.bord1{
-  left: -1.5%;
-  top: 24.5%;
-  width: 50px;
-  height: 50px;
-  border-left: 5px  outset #2196f3;
-  border-top: 5px inset #2196f3;
-}
-.bord2{
-  right: -1.5%;
-  top: 24.5%;
-  width: 50px;
-  height: 50px;
-  border-right: 5px inset #2196f3;
-  border-top: 5px inset #2196f3;
-}
-.bord3{
-  left: -1.5%;
-  bottom: 9.5%;
-  width: 50px;
-  height: 50px;
-  border-left: 5px inset #2196f3;
-  border-bottom: 5px inset #2196f3;
-}
-.bord4{
-  right: -1.5%;
-  bottom: 9.5%;
-  width: 50px;
-  height: 50px;
-  border-right: 5px inset #2196f3;
-  border-bottom: 5px outset #2196f3;
-} */
+
 @media (max-width: 768px) {
   .container, .qrCode{
     min-height: 50vh;
@@ -78,5 +45,68 @@
 @media only screen and (min-width: 900px) {
   .scanqr {
       display: none;
+  }
+}
+.sContainer{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.box{
+  width: 75vw;
+  height: 75vh;
+  background: #fff;
+  border-radius: .5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+}
+.rCorner{
+  position: absolute;
+  top: 0%;
+  right: 0;
+  background: #fff;
+  padding: .5rem;
+  overflow: hidden;
+}
+.lCorner{
+  position: absolute;
+  top: 0%;
+  left: 0;
+  background: #fff;
+  padding: .5rem;
+  overflow: hidden;
+}
+.inpField{
+  position: absolute;
+  bottom: 1%;
+  right: 0%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+}
+.inpField form{
+  width: 100%;
+  margin: auto;
+}
+.my-message{
+  color: green;
+}
+.received-message{
+  color: red;
+}
+input[type='file'] {
+  color: rgba(0, 0, 0, 0);
+  display: none;
+}
+@media (max-width: 640px){
+  .box{
+    flex-direction: column;
   }
 }

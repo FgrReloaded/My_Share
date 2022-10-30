@@ -3,18 +3,16 @@ import { io } from 'socket.io-client';
 import QRCode from "react-qr-code";
 import "./App.css";
 import { QrReader } from 'react-qr-reader';
-import randomatic from 'randomatic';
+import randomstring from 'randomstring';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const socketRef = useRef();
   const navigate = useNavigate();
-  const host = "http://localhost:2000";
-  const room = randomatic('*', 15);
-  const [data, setData] = useState("Scanned Result");
+  const host = "https://my-share-back.herokuapp.com";
+  const roomId = randomstring.generate(9);
   const [scanBtn, setScanBtn] = useState("Scan Code");
   const [showScan, setShowScan] = useState(false);
-  const [result, setResult] = useState("None");
   const showScanner = () => {
     if (!showScan) {
       setShowScan(true);
@@ -22,31 +20,16 @@ function Home() {
     } else {
       setShowScan(false);
       setScanBtn("Scan Code");
-      setData("Scanned Result");
     }
-  }
-  const copyText = () => {
-    navigator.clipboard.writeText(data);
-  }
-  const sendData = () => {
-    navigate(`/my-share/room=${data}`, { replace: true });
   }
   useEffect(() => {
     socketRef.current = io(host, {
-      query: { room }
+      query: { roomId }
     });
-    // socketRef.current.on('allUsersData', ({ users }) => {
-    //   setUsers(users)
-    // })
-
-    socketRef.current.on("send message", (message) => {
-      const incomingMessage = {
-        ...message,
-        ownedByCurrentUser: message.senderId === socketRef.current.id,
-      };
-      // setMessages((messages) => [...messages, incomingMessage]);
-    });
-  }, [room]);
+    socketRef.current.on("request", (rooms) => {
+      navigate(`/my-share/room=${rooms}`, { replace: true });
+    })
+  }, [navigate, roomId]);
 
   return (
     <>
@@ -60,48 +43,39 @@ function Home() {
             <div div className="flex justify-center scanqr">
               <button onClick={showScanner} className={`inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg`}>{scanBtn}</button>
             </div>
-          </div>{!showScan && (<div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+          </div><div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
             <div className="container">
-              <div className="qrCode">
+            {!showScan && ( <div className="qrCode">
                 <QRCode className="qr"
                   size={200}
-                  value="My Name is Saloni Kumari and I am Idiot Girl that everyone knows how stupid I am."
+                  value={roomId}
                 />
-              </div>
+              </div>)}
+              {showScan && (
+                <section className='scanner'>
+                  <QrReader
+                    delay={300}
+                    constraints={{ facingMode: "environment" }}
+                    onResult={(result, error) => {
+                      if (!!result) {
+                        navigate(`/my-share/room=${result?.text}`, { replace: true });
+                      }
+                      if (!!error) {
+                        console.info(error);
+                      }
+                    }}
+                    style={{ width: '100%' }} />
+                </section>
+              )}
             </div>
-          </div>)}
+          </div>
 
         </div>
       </section>
-      {showScan && (
-        <section className='scanner'>
-          <div className="flex items-center border-b border-teal-500 py-2 mb-15">
-            <div className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" aria-label="">{data}</div>
-            <a target="_blank" rel="noreferrer" href={data} className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
-              Goto
-            </a>
-            <button onClick={copyText} className="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded" type="button">
-              Copy
-            </button>
-          </div>
-          <QrReader
-            constraints={{ facingMode: "environment" }}
-            delay={300}
-            onResult={(result, error) => {
-              if (!!result) {
-                setData(result?.text);
-                sendData();
-              }
-              if (!!error) {
-                console.info(error);
-              }
-            }}
-            style={{ width: '100%' }} />
-        </section>
-      )}
+
     </>
 
   )
 }
 
-export default Home;
+export default Home
