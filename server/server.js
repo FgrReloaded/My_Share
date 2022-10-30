@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
 
     socket.on("file-send", function (data) {
         let {url} =data
-        let sub = url.substring(49, 60);
+        let sub = url.substring(50, 61);
         url = url.replace(sub, "fl_attachment");
         data = {...data, url};
         io.in(roomId).emit("file-receive", data);
