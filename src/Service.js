@@ -4,6 +4,7 @@ import useChat from "./useChat";
 function Service() {
   const choose = useRef();
   const params = useParams();
+  const download = useRef();
   const [translate, setTranslate] = useState("hidden")
   const [translate2, setTranslate2] = useState("hidden")
   const { room } = params;
@@ -33,13 +34,11 @@ function Service() {
     })
       .then(resp => resp.json())
       .then(data => {
-        console.log(data)
         shareFile(data.secure_url, fileData);
       })
       .catch(err => console.log(err))
   }
   function downloadFile(url, fileName) {
-    console.log(url)
     fetch(url, { method: 'get', mode: 'no-cors', referrerPolicy: 'no-referrer' })
       .then(res => res.blob())
       .then(res => {
@@ -123,10 +122,10 @@ function Service() {
           {files.map((data, index) => {
             return <div key={index} className='my-2'>
               <div className={`bg-white flex justify-between items-center rounded-lg ${data.ownedByCurrentUser ? "w-full" : "md:w-3/4 w-full"} shadow p-4 m-auto`}>
-                <img className='shadow-lg' src={data.url} width={100} alt="" />
+                <img className='shadow-lg' src={data.url} width={100} alt="file" />
                 <div className={`w-full relative rounded-full  ${data.ownedByCurrentUser ? "hidden" : ""}`}>
-                  {data.url}
-                  <button onClick={() => { downloadFile(data.url, data.filedata.filename) }} className="flex items-center p-2 m-auto transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
+                  <a href={data.url} ref={download} rel="noreferrer" target="_blank" className='hidden'>Link</a>
+                  <button onClick={()=>{download.current.click()}} className="flex items-center p-2 m-auto transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
                     <svg width="20" className='rotate-180' height="20" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z">
                       </path>
