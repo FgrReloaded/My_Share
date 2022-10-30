@@ -33,7 +33,7 @@ function Service() {
     })
       .then(resp => resp.json())
       .then(data => {
-        shareFile(data.url, fileData);
+        shareFile(data.secure_url, fileData);
       })
       .catch(err => console.log(err))
   }
