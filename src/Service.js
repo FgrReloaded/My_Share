@@ -36,7 +36,7 @@ function Service() {
       .then(data => {
         shareFile(data.secure_url, fileData);
       })
-      .catch(err => console.log(err))
+      .catch(err => {})
   }
   function downloadFile(url, fileName) {
     fetch(url, { method: 'get', mode: 'no-cors', referrerPolicy: 'no-referrer' })
