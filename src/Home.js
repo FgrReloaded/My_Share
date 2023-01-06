@@ -57,10 +57,10 @@ function Home() {
                     delay={300}
                     constraints={{ facingMode: "environment" }}
                     onResult={(result, error) => {
-                      if (!!result) {
+                      if (result) {
                         navigate(`/my-share/room=${result?.text}`, { replace: true });
                       }
-                      if (!!error) {
+                      if (error) {
                         console.info(error);
                       }
                     }}
