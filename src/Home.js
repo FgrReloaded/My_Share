@@ -61,7 +61,7 @@ function Home() {
                         navigate(`/my-share/room=${result?.text}`, { replace: true });
                       }
                       if (error) {
-                        console.info(error);
+                        
                       }
                     }}
                     style={{ width: '100%' }} />

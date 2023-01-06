@@ -11,7 +11,7 @@ const io = require('socket.io')(server, {
 const port = process.env.PORT || 2000;
 
 io.on("connection", (socket) => {
-    console.log(`Client ${socket.id} connected`);
+    
 
     // Join a conversation
     const { roomId } = socket.handshake.query;
@@ -40,12 +40,12 @@ io.on("connection", (socket) => {
     })
     // Leave the room if the user closes the socket
     socket.on("disconnect", () => {
-        console.log(`Client ${socket.id} diconnected`);
+        
         socket.leave(roomId);
     });
 });
 
 server.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    
 });
 
